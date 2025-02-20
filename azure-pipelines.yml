@@ -17,9 +17,11 @@ steps:
     openshiftService: 'Sandbox20150220'
     version: 'https://mirror.openshift.com/pub/openshift-v4/amd64/clients/ocp/4.17.8/openshift-client-linux-4.17.8.tar.gz'
     cmd: 'version'
+  env:
+    HOME: $(System.DefaultWorkingDirectory)
 - task: CopyFiles@2
   inputs:
-    Contents: '$(HOME)/.kube/config'
+    Contents: '$(System.DefaultWorkingDirectory)/.kube/config'
     TargetFolder: '$(System.DefaultWorkingDirectory)'
 - task: oc-cmd@3
   inputs:
